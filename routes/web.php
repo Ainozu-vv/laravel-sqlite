@@ -120,3 +120,12 @@ Route::get('/delete-posts', function () {
  DB::table('posts')->delete();
  DB::table('posts')->truncate();
 });
+
+Route::get('/posts/{post}/rating', function ($post) { //$post = id
+ $result = DB::table('ratings')
+ ->join('posts', 'ratings.id', '=', 'posts.rating_id') //inner join
+ ->select('title', 'body', 'score')
+ ->where('post_id', $post)
+ ->first();
+ dd($result);
+});
