@@ -11,4 +11,8 @@ class Post extends Model
     use HasFactory,SoftDeletes;
     protected $fillable = ['title', 'slug', 'body', 'published_at'];
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
+//App\Models\Post::orderBy('published_at', 'desc')->first();
+    public function rating(){
+        return $this->hasOne(Rating::class);
+    }
 }
